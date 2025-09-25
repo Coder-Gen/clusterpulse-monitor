@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: clusterpulse
-        image: ghcr.io/kramit100/clusterpulse:latest
+        image: ghcr.io/coder-gen/clusterpulse:v1
         ports:
         - containerPort: 5000
         env:
