@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: clusterpulse
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: clusterpulse
+  template:
+    metadata:
+      labels:
+        app: clusterpulse
+    spec:
+      containers:
+      - name: clusterpulse
+        image: ghcr.io/kramit100/clusterpulse:latest
+        ports:
+        - containerPort: 5000
+        env:
+        - name: NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        volumeMounts:
+        - name: nfs-volume
+          mountPath: /mnt/app_data
+      volumes:
+      - name: nfs-volume
+        persistentVolumeClaim:
+          claimName: nfs-pvc
+

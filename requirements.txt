@@ -1,0 +1,5 @@
+flask
+gunicorn
+psutil
+psycopg2-binary
+
